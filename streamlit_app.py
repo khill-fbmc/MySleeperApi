@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 
 @st.cache_data
- def load_rosters(league_id: str) -> pd.DataFrame:
+def load_rosters(league_id: str) -> pd.DataFrame:
     """
     Fetch rosters from the Sleeper API and return a flattened DataFrame.
     """
@@ -31,11 +31,11 @@ import pandas as pd
 st.title("Sleeper League Rosters Viewer")
 st.write("Enter a Sleeper league ID to fetch and display its rosters.")
 
-league_id = st.text_input("League ID", "1182054079525027840")
+selected_league_id = st.text_input("League ID", "1182054079525027840")
 
 if st.button("Load Rosters"):
     with st.spinner("Fetching data..."):
-        roster_df = load_rosters(league_id)
+        roster_df = load_rosters(selected_league_id)
     if not roster_df.empty:
         st.dataframe(roster_df)
     else:
